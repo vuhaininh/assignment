@@ -26,7 +26,7 @@ class Product < ActiveRecord::Base
  def self.searchByName(search, page)
 	  if search
 	      paginate :per_page => 5, :page => page,
-           :conditions => ['name LIKE ?', "%#{search}%"],
+           :conditions => ['name ILIKE ?', "%#{search}%"],
            :order => 'updated_at DESC'
 	  else
 		    paginate :per_page => 5, :page => page,
