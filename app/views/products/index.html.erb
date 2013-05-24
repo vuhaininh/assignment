@@ -12,7 +12,7 @@
 	<% end %>
 	<td>
 	<%= form_tag products_path, :method => "get" do %>
-	  <td><%= select_tag "filter", options_for_select([["Product", "Product"], ["Service", "Service"]]) %></td>
+	  <td width="100" ><%= select_tag "filter", options_for_select([["Product", "Product"], ["Service", "Service"]]) %></td>
 	  <td><%= submit_tag "Filter", name: nil, class: "btn btn-large btn-primary"  %></td>
 	<% end %>
 	</td>
