@@ -1,0 +1,43 @@
+<% provide(:title, 'All products') %>
+<h1>All products</h1>
+
+<table width="500" border="0">
+	<tr>
+	<td><%= link_to "Create new product!", newitem_path, class: "btn btn-large btn-primary"  %></td>
+	</tr>
+	<tr >
+	<%= form_tag products_path, :method => "get" do %>
+	<td width="250" ><%= text_field_tag :search, params[:search] %></td>
+	<td><%= submit_tag "Search", name: nil, class: "btn btn-large btn-primary"  %></td>
+	<% end %>
+	<td>
+	<%= form_tag products_path, :method => "get" do %>
+	  <td><%= select_tag "filter", options_for_select([["Product", "Product"], ["Service", "Service"]]) %></td>
+	  <td><%= submit_tag "Filter", name: nil, class: "btn btn-large btn-primary"  %></td>
+	<% end %>
+	</td>
+	</tr>
+</table>
+
+<%= will_paginate @products %> 
+<table class="table table-striped">  
+        <thead>  
+          <tr>  
+            <th>Product Name</th>  
+            <th>Item type</th>  
+            <th>Price</th>    
+          </tr>  
+        </thead>  
+        <tbody>
+		<% @products.each do |product| %>
+          <tr>  
+            <td><%= product.name %></td>  
+            <td><%= product.item_type %> </td>  
+            <td><%= product.price %></td>  
+            <td><%= link_to "delete", product, method: :delete,
+                                  data: { confirm: "You sure?" } %></td>  
+          </tr>
+        <% end %>		  
+        </tbody>  
+</table> 
+<%= will_paginate @products %>	  

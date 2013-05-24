@@ -1,4 +1,14 @@
 AssignmentApp::Application.routes.draw do
+  get "products/new"
+
+  resources :users
+  resources :products
+  resources :sessions, only: [:new, :create, :destroy]
+  root to: 'products#index'
+  match '/signup',  to: 'users#new'
+  match '/newitem',  to: 'products#new'
+  match '/signin',  to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,19 @@
+<% if @user != nil
+	  @err = @user
+   else
+      @err = @product
+%>
+<% end %>
+<% if @err.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-error">
+      The form contains <%= pluralize(@err.errors.count, "error") %>.
+    </div>
+    <ul>
+    <% @err.errors.full_messages.each do |msg| %>
+      <li>* <%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
